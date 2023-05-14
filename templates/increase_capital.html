@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Osakapitali suurendamine</h2>
+  <form action="{{ url_for('increase_capital', company_id=company[0]) }}" method="post">
+    {{ form.csrf_token }}
+    <h3>Olemasolevad osanikud</h3>
+    {% for shareholder in shareholders %}
+      <input type="hidden" name="existing_shareholder_ids[]" value="{{ shareholder.id }}">
+      <p>{{ shareholder[1] }} ({{ shareholder[2] }}) {{ shareholder[3] }}€</p>
+      <input type="number" name="existing_shareholder_shares[]" min="0" value="{{ shareholder.share }}">
+    {% endfor %}
+    <h3>Uus osanik</h3>
+    <h4>Nimi</h4>
+    <input type="text" name="shareholder_name" placeholder="Nimi">
+    <h4>Osa</h4>
+    <input type="number" name="shareholder_share" min="0" value="0">
+    <h4>Isikukood/registrikood</h4>
+    <input type="number" name="shareholder_personalcode" min="1000000" max="99999999999" value="10000000000">
+    <br>
+    <br>
+    <button type="submit">Salvesta</button>
+  </form>
+{% endblock %}

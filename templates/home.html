@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h2>Otsi osaühinguid</h2>
+    <form action="{{ url_for('search') }}" method="get">
+      <input type="text" name="query" placeholder="Osaühing, registrikood, osanik või osaniku isikukood">
+      <button type="submit">Otsi</button>
+    </form>
+    <a href="{{ url_for('create_company') }}">Asuta uus osaühing</a>
+  </div>
+{% endblock %}

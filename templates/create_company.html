@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Asuta uus osaühing</h2>
+  <form action="{{ url_for('create_company') }}" method="post">
+    {{ form.csrf_token }}
+    {{ form.name.label }} {{ form.name() }}
+    {{ form.reg_code.label }} {{ form.reg_code() }}
+    {{ form.founding_date.label }} {{ form.founding_date() }}
+    {{ form.capital.label }} {{ form.capital() }}
+    <h3>Osanikud</h3>
+    {{ form.shareholder_name.label }} {{ form.shareholder_name() }}
+    {{ form.shareholder_personalcode.label }} {{ form.shareholder_personalcode() }}
+    {{ form.shareholder_share.label }} {{ form.shareholder_share() }}
+    <button type="submit">Salvesta</button>
+  </form>
+{% endblock %}

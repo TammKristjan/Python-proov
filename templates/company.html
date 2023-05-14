@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>{{ company[1] }}</h2>
+  <p>Registrikood: {{ company[2] }}</p>
+  <p>Asutamiskuupäev: {{ company[3] }}</p>
+  <p>Kogukapital: {{ company[4] }}</p>
+  <h3>Osanikud</h3>
+  <ul>
+    {% for shareholder in shareholders %}
+      <li>
+        {% if shareholder[3] == 1 %}
+          <strong>{{ shareholder[0] }} ({{ shareholder[1] }})</strong> - {{ shareholder[2] }}€ (asutaja)
+        {% else %}
+          {{ shareholder[0] }} ({{ shareholder[1] }}) - {{ shareholder[2] }}€
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{{ url_for('increase_capital', company_id=company[0]) }}">Suurenda osakapitali</a>
+{% endblock %}

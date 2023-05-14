@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Otsingu tulemused</h2>
+  <form action="{{ url_for('search') }}" method="get">
+    <input type="text" name="query" value="{{ query }}">
+    <button type="submit">Otsi</button>
+  </form>
+  <ul>
+    {% for company in companies %}
+      <li><a href="{{ url_for('view_company', index=company[0]) }}">{{ company[1] }} - {{ company[2] }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
